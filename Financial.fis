@@ -1,0 +1,47 @@
+[System]
+Name='Financial'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='FixedExpenses'
+Range=[0 1000]
+NumMFs=3
+MF1='Low':'trimf',[0 100 300]
+MF2='medium':'trimf',[200 400 600]
+MF3='High':'trapmf',[500 700 1000 1000]
+
+[Input2]
+Name='RealEstateMortgage'
+Range=[0 5000]
+NumMFs=3
+MF1='Low':'trimf',[500 1000 1500]
+MF2='Medium':'trimf',[1000 2000 3000]
+MF3='High':'trapmf',[2500 4000 5000 5000]
+
+[Output1]
+Name='Financial'
+Range=[0 100]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 15 30]
+MF2='Medium':'trimf',[25 50 70]
+MF3='High':'trapmf',[60 80 100 100]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 1 (1) : 1
+3 1, 2 (1) : 1
+1 2, 2 (1) : 1
+2 2, 2 (1) : 1
+3 2, 2 (1) : 1
+1 3, 2 (1) : 1
+2 3, 3 (1) : 1
+3 3, 3 (1) : 1
